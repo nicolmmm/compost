@@ -1,0 +1,32 @@
+[
+  {
+    "stationName": "Marrickville Sunny House",
+    "stationDescription":"Our little sharehouse has been blessed with enough space and worms for a little recycling station. We accept food scraps only. Since we only have two worm farms we may not always be able to take your scraps. Get in touch to organise!" ,
+    "streetNumber": "11",
+    "street": "Sunny Road",
+    "city": "Marrickville",
+    "postCode": 2204,
+    "acceptingWaste": true,
+    "distributingSoil": false
+  },
+  {
+    "stationName": "Mr Wood chipper",
+    "stationDescription":"Accepting trees and logs- anything that can be woodchipped." ,
+    "streetNumber": "409",
+    "street": "Dural Lane",
+    "city": "Dural",
+    "postCode": 2100,
+    "acceptingWaste": true,
+    "distributingSoil": true
+  },
+  {
+    "stationName": "Soil free to a good home",
+    "stationDescription":"We have more soil than we know what to do with! We're not accepting organic waste at the moment until we clear some more soil." ,
+    "streetNumber": "40",
+    "street": "Wilson Street",
+    "city": "Redfern",
+    "postCode": 2042,
+    "acceptingWaste": false,
+    "distributingSoil": true
+  }
+]

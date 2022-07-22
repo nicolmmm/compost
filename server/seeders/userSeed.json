@@ -1,0 +1,26 @@
+[
+  {
+    "userName": "Megatron",
+    "email": "Megatron@user.com",
+    "password": "Password12345",
+    "phoneNumber": "0412345678",
+    "thumbsUp": 0,
+    "thumbsDown":0
+  },
+  {
+    "userName": "CompKing",
+    "email": "compKing@user.com",
+    "password": "Password12345",
+    "phoneNumber": "0412345679",
+    "thumbsUp": 0,
+    "thumbsDown":0
+  },
+  {
+    "userName": "greeny123",
+    "email": "greenguy@user.com",
+    "password": "Password12345",
+    "phoneNumber": "0412345698",
+    "thumbsUp": 0,
+    "thumbsDown":0
+  }
+]
