@@ -1,12 +1,14 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SEARCH_BY_POSTCODE } from "../../utils/queries";
 
-export function SearchPage({ userPostCodeQuery }) {
-  const [formState, setFormState] = useState({ QueryPostCode: "" });
-  const { loading, error, data } = useQuery(SEARCH_BY_POSTCODE, {
-    variables: { postCode: formState },
+export function SearchPage(/* { userPostCodeQuery } */) {
+  const [formState, setFormState] = useState({});
+  const { loading, error, data, refetch } = useQuery(SEARCH_BY_POSTCODE, {
+    //variables: { postCode: Number(formState.name) },
+    skip: true,
   });
+  //const [postCodeQuery, setPostCodeQuery] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,16 +21,16 @@ export function SearchPage({ userPostCodeQuery }) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      await data;
+      refetch({ postCode: 2204 /* Number(formState.name) */ });
       console.log(data);
     } catch (e) {
       console.error(e);
     }
 
-    // clear form values
-    setFormState({
-      QueryPostCode: "",
-    });
+    /* const populateSearch=(data)=>{
+      return (!data)? null :
+      {data.map((station)=>)}
+    } */
   };
 
   return (

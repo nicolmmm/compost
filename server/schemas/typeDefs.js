@@ -27,7 +27,7 @@ const typeDefs = gql`
     users: [User]!
     user(userId: ID!): User
     stations: [Station]!
-    stationByPostCode(queryPostCode: Int!): Station
+    stationByPostCode(queryPostCode: Int!): [Station]!
   }
 
   type Mutation {

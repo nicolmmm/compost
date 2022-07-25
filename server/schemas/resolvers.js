@@ -16,7 +16,7 @@ const resolvers = {
     },
 
     stationByPostCode: async (parent, { queryPostCode }) => {
-      return Station.findOne({ postCode: queryPostCode });
+      return Station.find({ postCode: queryPostCode });
     },
   },
 
