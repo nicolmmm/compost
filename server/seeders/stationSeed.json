@@ -28,5 +28,15 @@
     "postCode": 2042,
     "acceptingWaste": false,
     "distributingSoil": true
+  },
+  {
+    "stationName": "Illawarra Rd Farm",
+    "stationDescription":"Making use of our big backyard for the greater good!" ,
+    "streetNumber": "343",
+    "street": "Illawarra Rd ",
+    "city": "Marrickville",
+    "postCode": 2204,
+    "acceptingWaste": true,
+    "distributingSoil": true
   }
 ]

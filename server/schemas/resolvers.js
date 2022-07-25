@@ -1,20 +1,22 @@
-const { Thought, User } = require("../models");
+const { Station, User } = require("../models");
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find();
-    },
-
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
-    },
     users: async () => {
       return User.find();
     },
 
     user: async (parent, { userId }) => {
+      console.log(userId);
       return User.findOne({ _id: userId });
+    },
+
+    stations: async () => {
+      return Station.find();
+    },
+
+    stationByPostCode: async (parent, { queryPostCode }) => {
+      return Station.findOne({ postCode: queryPostCode });
     },
   },
 
@@ -36,34 +38,6 @@ const resolvers = {
 
     removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
-    },
-
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
-    },
-
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
-    },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
-      );
     },
   },
 };

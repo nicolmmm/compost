@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Home() {
+export function Home({ setCurrentPage }) {
   return (
     <div className="home-body">
       <div className="jumbotron col-8">
@@ -15,6 +15,7 @@ export function Home() {
           className="homepage-btn btn  btn-outline-info"
           style={{ cursor: "pointer" }}
           type="submit"
+          onClick={() => setCurrentPage("SearchPage")}
         >
           Find Recycling Stations
         </button>

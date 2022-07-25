@@ -11,13 +11,14 @@ const typeDefs = gql`
     thumbsDown: Int
   }
 
-  type Stations {
+  type Station {
+    _id: ID
     stationName: String!
     stationDescription: String!
     streetNumber: String!
     street: String!
     city: String!
-    postCode: Number!
+    postCode: Int!
     acceptingWaste: Boolean
     distributingSoil: Boolean
   }
@@ -25,9 +26,19 @@ const typeDefs = gql`
   type Query {
     users: [User]!
     user(userId: ID!): User
+    stations: [Station]!
+    stationByPostCode(queryPostCode: Int!): Station
   }
 
   type Mutation {
+    addStation(
+      stationName: String!
+      stationDescription: String!
+      streetNumber: String!
+      street: String!
+      city: String!
+      postCode: Int!
+    ): Station
     addUser(
       userName: String!
       email: String!
