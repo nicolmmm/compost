@@ -4,6 +4,8 @@ import { SEARCH_BY_POSTCODE } from "../../utils/queries";
 
 export function SearchPage(/* { userPostCodeQuery } */) {
   const [formState, setFormState] = useState({});
+  const [stationData, setStationData] = useState(null);
+
   const { loading, error, data, refetch } = useQuery(SEARCH_BY_POSTCODE, {
     //variables: { postCode: Number(formState.name) },
     skip: true,
@@ -21,16 +23,13 @@ export function SearchPage(/* { userPostCodeQuery } */) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      refetch({ postCode: 2204 /* Number(formState.name) */ });
+      const data = await refetch({ postCode: Number(formState.name) });
+      setStationData(data);
       console.log(data);
+      //return stationData;
     } catch (e) {
       console.error(e);
     }
-
-    /* const populateSearch=(data)=>{
-      return (!data)? null :
-      {data.map((station)=>)}
-    } */
   };
 
   return (
@@ -47,6 +46,16 @@ export function SearchPage(/* { userPostCodeQuery } */) {
             onChange={handleChange}
           />
         </form>
+      </div>
+
+      <div className="stationSearchData">
+        {stationData &&
+          stationData.data.stationByPostCode.map((station) => (
+            <div key={station._id}>
+              <h3> {station.stationName}</h3>
+              {<p>{station.stationDescription}</p>}
+            </div>
+          ))}
       </div>
     </div>
   );
