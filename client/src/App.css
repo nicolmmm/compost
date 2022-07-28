@@ -118,3 +118,19 @@ cursor: pointer;
   justify-content: center;
 
 }
+
+.stationSearchData{
+ 
+  justify-content: center;
+}
+
+.stationSearchEl{
+  width: 60%;
+  padding: 2rem;
+
+}
+
+.post-page-input-fields{
+  display: flex;
+  flex-direction: column;
+}

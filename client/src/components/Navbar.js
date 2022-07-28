@@ -1,23 +1,26 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
 function Navbar({ currentPage, setCurrentPage }) {
   return (
     <div className="navbar">
+      {" "}
       <div className="header-titles">
-        <h1 className="primary-heading">comPOST</h1>
+        <Link to="/">
+          {" "}
+          <h1 className="primary-heading">comPOST</h1>{" "}
+        </Link>
         <h5 className="secondary-heading"> Making a Difference</h5>
       </div>
-      <li
-        onClick={() => setCurrentPage("Home")}
-        className={currentPage === "Home" ? "navbar-tab-active" : "navbar-tab"}
-      >
-        <span>Home</span>
+      <li>
+        <Link to="/">
+          <span>Home</span>
+        </Link>
       </li>
-      <li
-        onClick={() => setCurrentPage("Login")}
-        className={currentPage === "Login" ? "navbar-tab-active" : "navbar-tab"}
-      >
-        <span>Login or Sign up!</span>
+      <li>
+        <Link to="/login">
+          <span>Login or Sign up!</span>
+        </Link>
       </li>
     </div>
   );

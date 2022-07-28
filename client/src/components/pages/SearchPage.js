@@ -51,9 +51,18 @@ export function SearchPage(/* { userPostCodeQuery } */) {
       <div className="stationSearchData">
         {stationData &&
           stationData.data.stationByPostCode.map((station) => (
-            <div key={station._id}>
-              <h3> {station.stationName}</h3>
-              {<p>{station.stationDescription}</p>}
+            <div className="stationSearchEl" key={station._id}>
+              <li>
+                <h3> {station.stationName}</h3>
+              </li>
+              <li>{station.stationDescription}</li>
+              <li>{station.city}</li>
+              <li>{station.street}</li>
+              <li>{station.streetNumber}</li>
+              <li>Accepting waste</li>
+              {station.acceptingWaste ? <p>yes</p> : <p>no</p>}
+              <li>Distributing Soil</li>
+              {station.distributingSoil ? <p>yes</p> : <p>no</p>}
             </div>
           ))}
       </div>

@@ -9,9 +9,9 @@ import Auth from "../../utils/auth";
 export const SignUp = () => {
   const [formState, setFormState] = useState({
     userName: "",
-    phoneNumber: "",
     email: "",
     password: "",
+    phoneNumber: "",
   });
   const [addUser, { error, data }] = useMutation(CREATE_NEW_USER);
 
@@ -29,11 +29,14 @@ export const SignUp = () => {
     console.log(formState);
 
     try {
+      console.log("line 32");
+      console.log({ ...formState });
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      console.log("line 36");
       Auth.login(data.addUser.token);
+      console.log("line 38");
     } catch (e) {
       console.error(e);
     }

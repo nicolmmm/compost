@@ -1,4 +1,6 @@
+const { AuthenticationError } = require("apollo-server-express");
 const { Station, User } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -22,7 +24,57 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { userName, email, password, phoneNumber }) => {
-      return User.create({ userName, email, password, phoneNumber });
+      const user = await User.create({
+        userName,
+        email,
+        password,
+        phoneNumber,
+      });
+      const token = signToken(user);
+      return { token, user };
+    },
+
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
+    addStation: async (
+      parent,
+      {
+        stationName,
+        stationDescription,
+        streetNumber,
+        street,
+        city,
+        postCode,
+        acceptingWaste,
+        distributingSoil,
+      }
+    ) => {
+      return Station.create({
+        stationName,
+        stationDescription,
+        streetNumber,
+        street,
+        city,
+        postCode,
+        acceptingWaste,
+        distributingSoil,
+      });
     },
 
     incrementThumbsUp: async (parents, { userId }) => {

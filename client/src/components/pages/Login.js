@@ -84,16 +84,8 @@ export const Login = ({ props, currentPage, setCurrentPage }) => {
                 {error.message}
               </div>
             )}
-            {/* trying to make a link from login page to singup page */}
             <div className="">
-              {" "}
-              First time here?{" "}
-              <span
-                onClick={() => setCurrentPage("SignUp")}
-                className="navbar-tab"
-              >
-                Sign up here!
-              </span>
+              First time here? <Link to="/signup">Sign up here!</Link>
             </div>
           </div>
         </div>

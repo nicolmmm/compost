@@ -1,6 +1,7 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
-export function Home({ setCurrentPage }) {
+export function Home() {
   return (
     <div className="home-body">
       <div className="jumbotron col-8">
@@ -11,21 +12,24 @@ export function Home({ setCurrentPage }) {
           people who can recycle organise waste at home with those who cannot,
           and redistributes the product of the organise recycling
         </p>
-        <button
-          className="homepage-btn btn  btn-outline-info"
-          style={{ cursor: "pointer" }}
-          type="submit"
-          onClick={() => setCurrentPage("SearchPage")}
-        >
-          Find Recycling Stations
-        </button>
-        <button
-          className="homepage-btn btn  btn-outline-info"
-          style={{ cursor: "pointer" }}
-          type="submit"
-        >
-          Post Recycling Stations
-        </button>
+        <Link to="search">
+          <button
+            className="homepage-btn btn  btn-outline-info"
+            style={{ cursor: "pointer" }}
+            type="submit"
+          >
+            Find Recycling Stations
+          </button>
+        </Link>
+        <Link to="/post">
+          <button
+            className="homepage-btn btn  btn-outline-info"
+            style={{ cursor: "pointer" }}
+            type="submit"
+          >
+            Post Recycling Stations
+          </button>
+        </Link>
       </div>
     </div>
   );
