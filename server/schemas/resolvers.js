@@ -9,12 +9,15 @@ const resolvers = {
     },
 
     user: async (parent, { userId }) => {
-      console.log(userId);
       return User.findOne({ _id: userId });
     },
 
     stations: async () => {
       return Station.find();
+    },
+
+    singleStation: async (parent, { stationId }) => {
+      return Station.findOne({ _id: stationId });
     },
 
     stationByPostCode: async (parent, { queryPostCode }) => {
@@ -31,10 +34,12 @@ const resolvers = {
         phoneNumber,
       });
       const token = signToken(user);
+      console.log("user is", user, "token is", token);
       return { token, user };
     },
 
     login: async (parent, { email, password }) => {
+      console.log("we in login");
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -63,20 +68,31 @@ const resolvers = {
         postCode,
         acceptingWaste,
         distributingSoil,
-      }
+      },
+      context
     ) => {
-      return Station.create({
-        stationName,
-        stationDescription,
-        streetNumber,
-        street,
-        city,
-        postCode,
-        acceptingWaste,
-        distributingSoil,
-      });
+      console.log("context is ", context.user);
+      if (context.user) {
+        const station = await Station.create({
+          stationName,
+          stationDescription,
+          streetNumber,
+          street,
+          city,
+          postCode,
+          acceptingWaste,
+          distributingSoil,
+          owner: context.user._id,
+        });
+        //adds station ID to user in DB
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { ownsStations: station._id } }
+        );
+        return station;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
-
     incrementThumbsUp: async (parents, { userId }) => {
       return User.findOneAndUpdate({ _id: userId }, { $inc: { thumbsUp: 1 } });
     },

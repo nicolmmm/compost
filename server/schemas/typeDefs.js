@@ -9,6 +9,8 @@ const typeDefs = gql`
     phoneNumber: String!
     thumbsUp: Int
     thumbsDown: Int
+    ownsStations: [Station]
+    savedStations: [Station]
   }
 
   type Station {
@@ -21,6 +23,7 @@ const typeDefs = gql`
     postCode: Int!
     acceptingWaste: Boolean
     distributingSoil: Boolean
+    owner: String
   }
 
   type Auth {
@@ -32,6 +35,7 @@ const typeDefs = gql`
     users: [User]!
     user(userId: ID!): User
     stations: [Station]!
+    singleStation(stationId: ID!): Station
     stationByPostCode(queryPostCode: Int!): [Station]!
   }
 
@@ -46,13 +50,16 @@ const typeDefs = gql`
       acceptingWaste: Boolean
       distributingSoil: Boolean
     ): Station
+
     addUser(
       userName: String!
       email: String!
       password: String!
       phoneNumber: String!
     ): Auth
+
     login(email: String!, password: String!): Auth
+
     removeUser(userId: ID!): User
     incrementThumbsUp(userId: ID!): User
     incrementThumbsDown(userId: ID!): User

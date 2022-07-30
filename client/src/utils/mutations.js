@@ -56,6 +56,8 @@ export const CREATE_NEW_STATION = gql`
       postCode: $postCode
       acceptingWaste: $acceptingWaste
       distributingSoil: $distributingSoil
-    )
+    ) {
+      stationName
+    }
   }
 `;

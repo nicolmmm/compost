@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import Auth from "../../utils/auth";
 
 export function Home() {
   return (
@@ -12,24 +13,40 @@ export function Home() {
           people who can recycle organise waste at home with those who cannot,
           and redistributes the product of the organise recycling
         </p>
-        <Link to="search">
-          <button
-            className="homepage-btn btn  btn-outline-info"
-            style={{ cursor: "pointer" }}
-            type="submit"
-          >
-            Find Recycling Stations
-          </button>
-        </Link>
-        <Link to="/post">
-          <button
-            className="homepage-btn btn  btn-outline-info"
-            style={{ cursor: "pointer" }}
-            type="submit"
-          >
-            Post Recycling Stations
-          </button>
-        </Link>
+
+        {Auth.loggedIn() ? (
+          <div className="jumbotron-buttons">
+            {" "}
+            <Link to="search">
+              <button
+                className="homepage-btn btn  btn-outline-info"
+                style={{ cursor: "pointer" }}
+                type="submit"
+              >
+                Find Recycling Stations
+              </button>
+            </Link>
+            <Link to="/post">
+              <button
+                className="homepage-btn btn  btn-outline-info"
+                style={{ cursor: "pointer" }}
+                type="submit"
+              >
+                Post Recycling Stations
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <Link to="/login">
+            <button
+              className="homepage-btn btn  btn-outline-info"
+              style={{ cursor: "pointer" }}
+              type="submit"
+            >
+              Login or Sign up
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

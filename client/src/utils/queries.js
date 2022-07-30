@@ -11,6 +11,34 @@ export const QUERY_ALL_USERS = gql`
   }
 `;
 
+export const USER_BY_ID = gql`
+  query User($userId: ID!) {
+    user(userId: $userId) {
+      thumbsDown
+      thumbsUp
+      phoneNumber
+      userName
+    }
+  }
+`;
+
+export const SEARCH_STATION_BY_ID = gql`
+  query SingleStation($stationId: ID!) {
+    singleStation(stationId: $stationId) {
+      _id
+      stationName
+      stationDescription
+      streetNumber
+      street
+      city
+      postCode
+      acceptingWaste
+      distributingSoil
+      owner
+    }
+  }
+`;
+
 export const SEARCH_BY_POSTCODE = gql`
   query StationByPostCode($postCode: Int!) {
     stationByPostCode(queryPostCode: $postCode) {

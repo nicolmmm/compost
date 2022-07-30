@@ -5,7 +5,8 @@
     "password": "Password12345",
     "phoneNumber": "0412345678",
     "thumbsUp": 0,
-    "thumbsDown":0
+    "thumbsDown":0,
+    "ownStations":[]
   },
   {
     "userName": "CompKing",
@@ -13,7 +14,8 @@
     "password": "Password12345",
     "phoneNumber": "0412345679",
     "thumbsUp": 0,
-    "thumbsDown":0
+    "thumbsDown":0,
+    "ownStations":[]
   },
   {
     "userName": "greeny123",
@@ -21,6 +23,7 @@
     "password": "Password12345",
     "phoneNumber": "0412345698",
     "thumbsUp": 0,
-    "thumbsDown":0
+    "thumbsDown":0,
+    "ownStations":[]
   }
 ]

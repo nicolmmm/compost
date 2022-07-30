@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import Auth from "../../src/utils/auth";
 
 function Navbar({ currentPage, setCurrentPage }) {
   return (
@@ -12,16 +13,41 @@ function Navbar({ currentPage, setCurrentPage }) {
         </Link>
         <h5 className="secondary-heading"> Making a Difference</h5>
       </div>
-      <li>
-        <Link to="/">
-          <span>Home</span>
+      <li className="navbar-li">
+        <Link to="search">
+          <span className="navbar-span">Search</span>
         </Link>
       </li>
-      <li>
-        <Link to="/login">
-          <span>Login or Sign up!</span>
+      <li className="navbar-li">
+        <Link to="Post">
+          <span className="navbar-span">Post New</span>
         </Link>
       </li>
+      {console.log(useParams())}
+      {Auth.loggedIn() ? (
+        <div className="navbar-loggedIn">
+          <li className="navbar-li">
+            <Link to="/">
+              {" "}
+              {/* Link to user's profile eventually */}
+              <span className="navbar-span">Welcome back {}!</span>
+            </Link>
+          </li>
+          <li className="navbar-li">
+            <Link to="/">
+              <span onClick={Auth.logout} className="navbar-span">
+                Log out
+              </span>
+            </Link>
+          </li>
+        </div>
+      ) : (
+        <li className="navbar-li">
+          <Link to="/login">
+            <span className="navbar-span">Login or Sign up!</span>
+          </Link>
+        </li>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 const bcrypt = require("bcrypt");
+const Station = require("./Station");
 
 /* do we use JWT to validate password?? */
 
@@ -53,6 +54,13 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+
+  ownsStations: {
+    type: Schema.Types.ObjectId,
+    ref: "station",
+  },
+
+  savedStations: { type: Schema.Types.ObjectId, ref: "station" },
 
   createdAt: {
     type: Date,

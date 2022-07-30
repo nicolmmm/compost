@@ -1,28 +1,75 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { CREATE_NEW_STATION } from "../../utils/queries";
+import { CREATE_NEW_STATION } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
-const handleFormSubmit = async (event) => {
-  event.preventDefault();
-  try {
-    /*  const data = await refetch({ postCode: Number(formState.name) });
-    setStationData(data); */
-    console.log(":)");
-  } catch (e) {
-    console.error(e);
-  }
-};
+export const PostPage = () => {
+  const [formState, setFormState] = useState({
+    stationName: "",
+    stationDescription: "",
+    streetNumber: "",
+    street: "",
+    city: "",
+    postCode: "",
+    acceptingWaste: false,
+    distributingSoil: false,
+  });
 
-const handleChange = (event) => {
-  const { name, value } = event.target;
-  /*  setFormState({
-    name: value,
-  }); */
-};
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-export function PostPage() {
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  //returns integer value instead of string
+  const handleChangeInt = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: parseInt(value),
+    });
+  };
+
+  const handleChangeCheckBox = (event) => {
+    const { name, value } = event.target;
+    if (event.target.value === "false") {
+      setFormState({
+        ...formState,
+        [name]: true,
+      });
+    } else {
+      setFormState({
+        ...formState,
+        [name]: false,
+      });
+    }
+  };
+
+  const [addStation /* { error, data } */] = useMutation(CREATE_NEW_STATION);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      /* const { data } =  */ await addStation(
+        {
+          variables: { ...formState },
+        }
+        // Auth.getToken(data.token)
+        //console.log("data is ", data)
+      );
+    } catch (e) {
+      console.log({ ...formState });
+      console.error("woops!", e);
+    }
+  };
+
   return (
-    <div className="post-page-body  mx-auto">
+    <div className="post-page-body mx-auto">
       <h2>Post a recycling station</h2>
       <div className="post-page-input-fields mx-auto">
         <form onSubmit={handleFormSubmit}>
@@ -31,7 +78,7 @@ export function PostPage() {
             placeholder="Station Name"
             name="stationName"
             type="stationName"
-            defaultValue={""}
+            value={formState.stationName}
             onChange={handleChange}
           />
           <input
@@ -39,7 +86,7 @@ export function PostPage() {
             placeholder="station Description"
             name="stationDescription"
             type="stationDescription"
-            defaultValue={""}
+            value={formState.stationDescription}
             onChange={handleChange}
           />
           <input
@@ -47,7 +94,7 @@ export function PostPage() {
             placeholder="street Number"
             name="streetNumber"
             type="streetNumber"
-            defaultValue={""}
+            value={formState.streetNumber}
             onChange={handleChange}
           />
           <input
@@ -55,7 +102,7 @@ export function PostPage() {
             placeholder="Street Name"
             name="street"
             type="street"
-            defaultValue={""}
+            value={formState.street}
             onChange={handleChange}
           />
           <input
@@ -63,7 +110,7 @@ export function PostPage() {
             placeholder="City"
             name="city"
             type="city"
-            defaultValue={""}
+            value={formState.city}
             onChange={handleChange}
           />
           <input
@@ -71,23 +118,34 @@ export function PostPage() {
             placeholder="Post code"
             name="postCode"
             type="postCode"
-            defaultValue={""}
-            onChange={handleChange}
+            value={formState.postCode}
+            onChange={handleChangeInt}
           />
           <div className="radio">
             <label>
-              <input type="radio" defaultChecked={false} />
+              <input
+                name="acceptingWaste"
+                type="checkbox"
+                value={formState.acceptingWaste}
+                onChange={handleChangeCheckBox}
+              />
               Accepting Waste
             </label>
           </div>
           <div className="radio">
             <label>
-              <input type="radio" defaultChecked={false} />
+              <input
+                name="distributingSoil"
+                type="checkbox"
+                value={formState.distributingSoil}
+                onChange={handleChangeCheckBox}
+              />
               Distributing Soil
             </label>
           </div>
+          <input type="submit" hidden />
         </form>
       </div>
     </div>
   );
-}
+};

@@ -53,7 +53,7 @@ const stationSchema = new Schema({
     default: false,
   },
 
-  user: { type: Schema.Types.ObjectId, ref: User },
+  owner: { type: Schema.Types.ObjectId, ref: "user", require: true },
 
   createdAt: {
     type: Date,

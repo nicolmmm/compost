@@ -126,11 +126,29 @@ cursor: pointer;
 
 .stationSearchEl{
   width: 60%;
-  padding: 2rem;
+  margin: 2rem;
+  padding: 1rem;
+ /*  border: 5px solid #028d53;*/
+  border: #028d53
+
+}
+
+.station-street-address{
+  line-height: 0.8;
 
 }
 
 .post-page-input-fields{
   display: flex;
   flex-direction: column;
+}
+
+.navbar-li{
+  list-style: none;
+
+}
+
+.navbar-span{
+  color: whitesmoke;
+  
 }

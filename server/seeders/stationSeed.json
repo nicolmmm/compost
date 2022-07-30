@@ -7,7 +7,8 @@
     "city": "Marrickville",
     "postCode": 2204,
     "acceptingWaste": true,
-    "distributingSoil": false
+    "distributingSoil": false,
+    "owner":"62e48b123d0a74a211a19f86"
   },
   {
     "stationName": "Mr Wood chipper",
@@ -17,7 +18,8 @@
     "city": "Dural",
     "postCode": 2100,
     "acceptingWaste": true,
-    "distributingSoil": true
+    "distributingSoil": true,
+    "owner":"62e48b123d0a74a211a19f86"
   },
   {
     "stationName": "Soil free to a good home",
@@ -27,7 +29,8 @@
     "city": "Redfern",
     "postCode": 2042,
     "acceptingWaste": false,
-    "distributingSoil": true
+    "distributingSoil": true,
+    "owner":"62e48b123d0a74a211a19f86"
   },
   {
     "stationName": "Illawarra Rd Farm",
@@ -37,6 +40,7 @@
     "city": "Marrickville",
     "postCode": 2204,
     "acceptingWaste": true,
-    "distributingSoil": true
+    "distributingSoil": true,
+    "owner":"62e48b123d0a74a211a19f86"
   }
 ]

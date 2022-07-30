@@ -1,16 +1,15 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { SEARCH_BY_POSTCODE } from "../../utils/queries";
+import { Link, useParams } from "react-router-dom";
 
-export function SearchPage(/* { userPostCodeQuery } */) {
+export function SearchPage() {
   const [formState, setFormState] = useState({});
   const [stationData, setStationData] = useState(null);
 
   const { loading, error, data, refetch } = useQuery(SEARCH_BY_POSTCODE, {
-    //variables: { postCode: Number(formState.name) },
     skip: true,
   });
-  //const [postCodeQuery, setPostCodeQuery] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,8 +24,7 @@ export function SearchPage(/* { userPostCodeQuery } */) {
     try {
       const data = await refetch({ postCode: Number(formState.name) });
       setStationData(data);
-      console.log(data);
-      //return stationData;
+      //console.log(data);
     } catch (e) {
       console.error(e);
     }
@@ -51,18 +49,40 @@ export function SearchPage(/* { userPostCodeQuery } */) {
       <div className="stationSearchData">
         {stationData &&
           stationData.data.stationByPostCode.map((station) => (
-            <div className="stationSearchEl" key={station._id}>
-              <li>
-                <h3> {station.stationName}</h3>
-              </li>
-              <li>{station.stationDescription}</li>
-              <li>{station.city}</li>
-              <li>{station.street}</li>
-              <li>{station.streetNumber}</li>
-              <li>Accepting waste</li>
-              {station.acceptingWaste ? <p>yes</p> : <p>no</p>}
-              <li>Distributing Soil</li>
-              {station.distributingSoil ? <p>yes</p> : <p>no</p>}
+            <div className="stationSearchEl border" key={station._id}>
+              <h3> {station.stationName}</h3>
+
+              <p>{station.stationDescription}</p>
+              {/* <div className="station-street-address lh-base">
+                <h4>{station.city}</h4>
+                <h5>{station.postCode}</h5>
+                <p>{station.street}</p>
+                <p>{station.streetNumber}</p>
+              </div> */}
+              <div className="collection-status">
+                <b>Accepting waste</b>
+                {station.acceptingWaste ? <p>yes</p> : <p>no</p>}
+                <b>Distributing Soil</b>
+                {station.distributingSoil ? <p>yes</p> : <p>no</p>}
+              </div>
+              <Link to={`/search/${station._id}`}>
+                <button
+                  className="homepage-btn btn  btn-outline-info"
+                  style={{ cursor: "pointer" }}
+                  type="submit"
+                >
+                  View Station
+                </button>
+              </Link>
+              <Link to="/post">
+                <button
+                  className="homepage-btn btn  btn-outline-info"
+                  style={{ cursor: "pointer" }}
+                  type="submit"
+                >
+                  Save Station
+                </button>
+              </Link>
             </div>
           ))}
       </div>
