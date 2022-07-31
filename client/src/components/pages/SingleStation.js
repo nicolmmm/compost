@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { SEARCH_STATION_BY_ID } from "../../utils/queries";
+import { SEARCH_STATION_BY_ID, USER_BY_ID } from "../../utils/queries";
 import { Link, useParams } from "react-router-dom";
+import { UserSidebar } from "../UserSidebar";
 
 export function SingleStation() {
   const { stationId } = useParams();
-  console.log("station ID is ", stationId);
   const { loading, data } = useQuery(SEARCH_STATION_BY_ID, {
     // pass URL parameter
     variables: { stationId: stationId },
@@ -13,13 +13,11 @@ export function SingleStation() {
 
   const station = data?.singleStation || {};
 
-  console.log("data is ", data);
-
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="stationSearchData">
+    <div className="single-station-data">
       <div className="stationSearchEl border" key={station._id}>
         <h3> {station.stationName}</h3>
 
@@ -44,6 +42,7 @@ export function SingleStation() {
           Save Station
         </button>
       </div>
+      <UserSidebar userId={station.owner} />
     </div>
   );
 }

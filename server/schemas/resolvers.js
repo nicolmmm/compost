@@ -9,7 +9,7 @@ const resolvers = {
     },
 
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOneAndUpdate({ _id: userId });
     },
 
     stations: async () => {
@@ -39,7 +39,6 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      console.log("we in login");
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -56,6 +55,10 @@ const resolvers = {
 
       return { token, user };
     },
+
+    saveStation: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
+    } /*  */,
 
     addStation: async (
       parent,

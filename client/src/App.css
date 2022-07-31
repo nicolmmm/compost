@@ -119,19 +119,30 @@ cursor: pointer;
 
 }
 
-.stationSearchData{
- 
-  justify-content: center;
+.single-station-data{
+display: flex
 }
 
 .stationSearchEl{
   width: 60%;
   margin: 2rem;
   padding: 1rem;
- /*  border: 5px solid #028d53;*/
-  border: #028d53
 
 }
+
+.user-sidebar-body{
+  width: 30%;
+  margin: 2rem;
+  padding: 1rem;
+  
+}
+
+.user-profile{
+  width: 60%;
+  margin: 2rem;
+  padding: 1rem;
+}
+
 
 .station-street-address{
   line-height: 0.8;

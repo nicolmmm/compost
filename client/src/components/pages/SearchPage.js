@@ -53,12 +53,7 @@ export function SearchPage() {
               <h3> {station.stationName}</h3>
 
               <p>{station.stationDescription}</p>
-              {/* <div className="station-street-address lh-base">
-                <h4>{station.city}</h4>
-                <h5>{station.postCode}</h5>
-                <p>{station.street}</p>
-                <p>{station.streetNumber}</p>
-              </div> */}
+
               <div className="collection-status">
                 <b>Accepting waste</b>
                 {station.acceptingWaste ? <p>yes</p> : <p>no</p>}

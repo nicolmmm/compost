@@ -18,6 +18,7 @@ export const USER_BY_ID = gql`
       thumbsUp
       phoneNumber
       userName
+      _id
     }
   }
 `;

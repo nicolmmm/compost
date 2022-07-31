@@ -35,6 +35,7 @@ const typeDefs = gql`
     users: [User]!
     user(userId: ID!): User
     stations: [Station]!
+
     singleStation(stationId: ID!): Station
     stationByPostCode(queryPostCode: Int!): [Station]!
   }
@@ -57,6 +58,8 @@ const typeDefs = gql`
       password: String!
       phoneNumber: String!
     ): Auth
+
+    saveStation(stationId: ID!): User
 
     login(email: String!, password: String!): Auth
 
