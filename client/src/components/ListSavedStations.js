@@ -11,11 +11,24 @@ export function ListSavedStations({ userId }) {
   });
 
   const savedStations = data?.user.savedStations || {};
-  console.log("savedStation is", savedStations);
 
-  const [savedStationsArr, setSavedStationsArr] = useState(savedStations);
+  const [savedStationsArr, setSavedStationsArr] = useState({});
 
-  console.log("auth is", Auth.getProfile().data._id);
+  const setState = () =>
+    savedStations ? setSavedStationsArr(savedStations) : null;
+
+  setState();
+
+  console.log(savedStationsArr);
+
+  //setSavedStationsArr({ savedStations });
+  /* 
+  console.log(
+    "savedStationsArr is",
+    savedStationsArr,
+    "savedStations is",
+    savedStations
+  ); */
 
   const isUsersProfile = (usedId) => {
     if (userId === Auth.getProfile().data._id) return true;
@@ -25,7 +38,7 @@ export function ListSavedStations({ userId }) {
     <div className="saved-station-list">
       <h2>Saved Stations</h2>
       {loading ? (
-        <p> No Stations saved yet</p>
+        <p> Loading...</p>
       ) : (
         savedStations.map((station) => (
           <div key={station._id} className="individual-saved-stations">

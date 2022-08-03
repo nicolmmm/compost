@@ -6,13 +6,11 @@ export function RemoveSavedStationButton({ stationId }) {
 
   const handleSave = async (event) => {
     event.preventDefault();
-    console.log("THISSSS!", this);
     try {
       const removeSavedStationres = await removeSavedStation({
         variables: { stationId },
       });
 
-      console.log(removeSavedStationres);
       return removeSavedStationres;
     } catch (e) {
       console.error("whoops!", e);
