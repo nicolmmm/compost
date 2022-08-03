@@ -50,7 +50,9 @@ export function SearchPage() {
         {stationData &&
           stationData.data.stationByPostCode.map((station) => (
             <div className="stationSearchEl border" key={station._id}>
-              <h3> {station.stationName}</h3>
+              <Link to={`/search/${station._id}`}>
+                <h3> {station.stationName}</h3>
+              </Link>
 
               <p>{station.stationDescription}</p>
 
@@ -60,24 +62,6 @@ export function SearchPage() {
                 <b>Distributing Soil</b>
                 {station.distributingSoil ? <p>yes</p> : <p>no</p>}
               </div>
-              <Link to={`/search/${station._id}`}>
-                <button
-                  className="homepage-btn btn  btn-outline-info"
-                  style={{ cursor: "pointer" }}
-                  type="submit"
-                >
-                  View Station
-                </button>
-              </Link>
-              <Link to="/post">
-                <button
-                  className="homepage-btn btn  btn-outline-info"
-                  style={{ cursor: "pointer" }}
-                  type="submit"
-                >
-                  Save Station
-                </button>
-              </Link>
             </div>
           ))}
       </div>

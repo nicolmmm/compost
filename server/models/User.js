@@ -3,8 +3,6 @@ const dateFormat = require("../utils/dateFormat");
 const bcrypt = require("bcrypt");
 const Station = require("./Station");
 
-/* do we use JWT to validate password?? */
-
 var validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
@@ -35,7 +33,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 8,
-    /* needs validation */
   },
 
   phoneNumber: {
@@ -55,12 +52,19 @@ const userSchema = new Schema({
     default: 0,
   },
 
-  ownsStations: {
-    type: Schema.Types.ObjectId,
-    ref: "station",
-  },
+  ownsStations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "station",
+    },
+  ],
 
-  savedStations: { type: Schema.Types.ObjectId, ref: "station" },
+  savedStations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "station",
+    },
+  ],
 
   createdAt: {
     type: Date,

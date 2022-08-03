@@ -34,6 +34,7 @@ const typeDefs = gql`
   type Query {
     users: [User]!
     user(userId: ID!): User
+    userTwo(userId: ID!): User
     stations: [Station]!
 
     singleStation(stationId: ID!): Station
@@ -64,6 +65,10 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     removeUser(userId: ID!): User
+
+    removeSavedStation(stationId: ID!): User
+
+    removeStation(StationId: ID!): Station
     incrementThumbsUp(userId: ID!): User
     incrementThumbsDown(userId: ID!): User
   }

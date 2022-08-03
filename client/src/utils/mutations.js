@@ -12,6 +12,29 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const SAVE_STATION = gql`
+  mutation SaveStation($stationId: ID!) {
+    saveStation(stationId: $stationId) {
+      savedStations {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_SAVED_STATION = gql`
+  mutation RemoveSavedStation($stationId: ID!) {
+    removeSavedStation(stationId: $stationId) {
+      userName
+      _id
+      savedStations {
+        _id
+        stationName
+      }
+    }
+  }
+`;
+
 export const CREATE_NEW_USER = gql`
   mutation addUser(
     $userName: String!
@@ -32,6 +55,26 @@ export const CREATE_NEW_USER = gql`
         password
         phoneNumber
       }
+    }
+  }
+`;
+
+export const INCREMENT_THUMBS_DOWN = gql`
+  mutation IncrementThumbsDown($userId: ID!) {
+    incrementThumbsDown(userId: $userId) {
+      userName
+      _id
+      thumbsDown
+    }
+  }
+`;
+
+export const INCREMENT_THUMBS_UP = gql`
+  mutation IncrementThumbsUp($userId: ID!) {
+    incrementThumbsUp(userId: $userId) {
+      _id
+      userName
+      thumbsUp
     }
   }
 `;
@@ -58,6 +101,7 @@ export const CREATE_NEW_STATION = gql`
       distributingSoil: $distributingSoil
     ) {
       stationName
+      _id
     }
   }
 `;

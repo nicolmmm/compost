@@ -6,7 +6,8 @@
     "phoneNumber": "0412345678",
     "thumbsUp": 0,
     "thumbsDown":0,
-    "ownStations":[]
+    "ownStations":[],
+    "savedStations":[]
   },
   {
     "userName": "CompKing",
@@ -15,7 +16,8 @@
     "phoneNumber": "0412345679",
     "thumbsUp": 0,
     "thumbsDown":0,
-    "ownStations":[]
+    "ownStations":[],
+    "savedStations":[]
   },
   {
     "userName": "greeny123",
@@ -24,6 +26,7 @@
     "phoneNumber": "0412345698",
     "thumbsUp": 0,
     "thumbsDown":0,
-    "ownStations":[]
+    "ownStations":[],
+    "savedStations":[]
   }
 ]

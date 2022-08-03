@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { USER_BY_ID } from "../utils/queries";
 import { Link, useParams } from "react-router-dom";
+import { ThumbsComponent } from "../components/ThumbsComponent";
 
 //get user associated with station
 export function UserSidebar({ userId }) {
@@ -18,12 +19,11 @@ export function UserSidebar({ userId }) {
       <Link to={`/profile/${user._id}`}>
         <h4>{user.userName}</h4>
       </Link>
-      <b>Rating</b>
-      <h5>
-        {user.thumbsUp === 0 && user.thumbsDown === 0
-          ? "No rating yet"
-          : "this rating"}
-      </h5>
+      <ThumbsComponent
+        thumbsDown={user.thumbsDown}
+        thumbsUp={user.thumbsUp}
+        userId={user._id}
+      />
       <b>Phone Number:</b>
       <p>{user.phoneNumber}</p>
     </div>

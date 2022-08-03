@@ -137,10 +137,27 @@ display: flex
   
 }
 
-.user-profile{
-  width: 60%;
+.user-sidebar-profile{
+  width: 50%;
   margin: 2rem;
   padding: 1rem;
+  
+}
+
+.saved-stations-user-profile{
+  width: 30%;
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.saved-stations-container{
+  display: flex;
+}
+
+
+
+.user-profile-container{
+
 }
 
 

@@ -1,8 +1,13 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { SEARCH_STATION_BY_ID, USER_BY_ID } from "../../utils/queries";
+import {
+  SEARCH_STATION_BY_ID,
+  USER_BY_ID,
+  SAVE_STATION,
+} from "../../utils/queries";
 import { Link, useParams } from "react-router-dom";
 import { UserSidebar } from "../UserSidebar";
+import { SaveStationButton } from "../SaveStationButton";
 
 export function SingleStation() {
   const { stationId } = useParams();
@@ -34,13 +39,7 @@ export function SingleStation() {
           <b>Distributing Soil</b>
           {station.distributingSoil ? <p>yes</p> : <p>no</p>}
         </div>
-        <button
-          className="homepage-btn btn  btn-outline-info"
-          style={{ cursor: "pointer" }}
-          type="submit"
-        >
-          Save Station
-        </button>
+        <SaveStationButton stationId={stationId} />
       </div>
       <UserSidebar userId={station.owner} />
     </div>

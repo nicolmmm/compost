@@ -23,14 +23,21 @@ function Navbar({ currentPage, setCurrentPage }) {
           <span className="navbar-span">Post New</span>
         </Link>
       </li>
-      {console.log(useParams())}
       {Auth.loggedIn() ? (
         <div className="navbar-loggedIn">
           <li className="navbar-li">
             <Link to="/">
               {" "}
               {/* Link to user's profile eventually */}
-              <span className="navbar-span">Welcome back {}!</span>
+              <Link to={`/profile/${Auth.getProfile().data._id}`}>
+                <span className="navbar-span">
+                  Welcome back{" "}
+                  <span className="text-warning">
+                    {Auth.getProfile().data.userName}
+                  </span>
+                  !
+                </span>
+              </Link>
             </Link>
           </li>
           <li className="navbar-li">
