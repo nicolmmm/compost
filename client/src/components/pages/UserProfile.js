@@ -15,8 +15,6 @@ export function UserProfile() {
 
   const user = data?.user || {};
 
-  console.log(userId);
-
   return (
     <div key={user._id} className="user-profile-container">
       <div className="user-sidebar-profile border">

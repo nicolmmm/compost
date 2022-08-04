@@ -11,7 +11,6 @@ export function SaveStationButton({ stationId }) {
       const saveStationRes = await saveStation({
         variables: { stationId },
       });
-      console.log(saveStationRes);
       return saveStationRes;
     } catch (e) {
       console.error("whoops!", e);

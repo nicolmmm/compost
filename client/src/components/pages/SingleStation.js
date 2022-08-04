@@ -42,9 +42,7 @@ export function SingleStation() {
         </div>
         <SaveStationButton stationId={stationId} />
         {returnTrueIfUserOwnsStation(station.owner) ? (
-          <Link to={`profile/${station.owner}`}>
-            <RemoveStationButton stationId={station._id} />
-          </Link>
+          <RemoveStationButton stationId={station._id} />
         ) : null}
       </div>
       <UserSidebar userId={station.owner} />

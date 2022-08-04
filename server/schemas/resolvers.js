@@ -41,7 +41,6 @@ const resolvers = {
         phoneNumber,
       });
       const token = signToken(user);
-      console.log("user is", user, "token is", token);
       return { token, user };
     },
 
@@ -65,7 +64,6 @@ const resolvers = {
 
     //saves a station to a user's "savedStations" array
     saveStation: async (parent, { stationId }, context) => {
-      console.log(stationId);
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -138,7 +136,6 @@ const resolvers = {
 
     //removes a saved station from a user's savedStations array
     removeSavedStation: async (parent, { stationId }, context) => {
-      console.log(context.user);
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },

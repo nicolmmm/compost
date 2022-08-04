@@ -12,19 +12,12 @@ export function ListSavedStations({ userId }) {
 
   const savedStations = data?.user.savedStations || [];
 
-  /*   const [savedStationsArr, setSavedStationsArr] = useState(savedStations);
-
-  useEffect(() => {
-    setSavedStationsArr(savedStations);
-  }, [savedStations.length]); */
-
   const returnTrueIfUserOwnsStation = (id) => {
     if (Auth.getProfile().data._id === id) return true;
     else return false;
   };
 
   const onRemove = () => {
-    console.log(savedStations);
     refetch();
   };
 

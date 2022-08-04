@@ -24,7 +24,6 @@ export function SearchPage() {
     try {
       const data = await refetch({ postCode: Number(formState.name) });
       setStationData(data);
-      console.log("stationData state is ", data, "formState is ", formState);
     } catch (e) {
       console.error(e);
     }

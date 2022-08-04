@@ -55,15 +55,6 @@ export const PostPage = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(
-      formState.stationName.value,
-      formState.stationDescription,
-      formState.streetNumber,
-      formState.street,
-      formState.city,
-      formState.postCode
-    );
-
     if (
       formState.stationName === "" ||
       formState.stationDescription === "" ||

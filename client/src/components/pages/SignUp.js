@@ -26,17 +26,12 @@ export const SignUp = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
-      console.log("line 32");
-      console.log({ ...formState });
       const { data } = await addUser({
         variables: { ...formState },
       });
-      console.log("line 36");
       Auth.login(data.addUser.token);
-      console.log("line 38");
     } catch (e) {
       console.error(e);
     }
