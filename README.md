@@ -14,7 +14,6 @@ This project is using MIT license.
 
 - [User Story](#user-story)
 - [Screenshot](#screenshot)
-- [Walkthrough Video](#walkthrough-video)
 - [Credits](#credits)
 - [Heroku deploy](#Deployment)
 
@@ -50,4 +49,4 @@ How it looks!
 ## Deployment
 
 ** Note that the application is only seeded with Data for the postcode "2204" for demo purposes. Any other data was added by other users**
-[comPost Deployed on Heroku]()
+[comPost Deployed on Heroku](https://compost-application.herokuapp.com/)
