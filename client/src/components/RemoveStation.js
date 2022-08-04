@@ -1,18 +1,19 @@
 import { useMutation } from "@apollo/client";
-import { REMOVE_SAVED_STATION } from "../utils/mutations";
+import { REMOVE_STATION } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
-export function RemoveSavedStationButton({ stationId, onRemove }) {
-  const [removeSavedStation] = useMutation(REMOVE_SAVED_STATION);
+export function RemoveStationButton({ stationId }) {
+  const [removeStation] = useMutation(REMOVE_STATION);
+  const navigate = useNavigate();
 
   const handleSave = async (event) => {
     event.preventDefault();
     try {
-      const removeSavedStationres = await removeSavedStation({
+      const removeStationres = await removeStation({
         variables: { stationId },
       });
-      onRemove();
-
-      return removeSavedStationres;
+      navigate(`/`, { replace: true });
+      return removeStationres;
     } catch (e) {
       console.error("whoops!", e);
     }
@@ -25,7 +26,7 @@ export function RemoveSavedStationButton({ stationId, onRemove }) {
       type="button"
       onClick={handleSave}
     >
-      Remove Station
+      Delete Station
     </button>
   );
 }

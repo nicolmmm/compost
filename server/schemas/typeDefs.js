@@ -68,7 +68,7 @@ const typeDefs = gql`
 
     removeSavedStation(stationId: ID!): User
 
-    removeStation(StationId: ID!): Station
+    removeStation(stationId: ID!): Station
     incrementThumbsUp(userId: ID!): User
     incrementThumbsDown(userId: ID!): User
   }

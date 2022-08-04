@@ -4,9 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import { USER_BY_ID_STATION_LISTS } from "../utils/queries";
 
 export function ListOwnsStations({ userId }) {
-  const { loading, data } = useQuery(USER_BY_ID_STATION_LISTS, {
+  const { loading, data, refetch } = useQuery(USER_BY_ID_STATION_LISTS, {
     variables: { userId: userId },
   });
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const ownsStations = data?.user.ownsStations || {};
 
@@ -17,7 +21,7 @@ export function ListOwnsStations({ userId }) {
         <p> No Stations saved yet</p>
       ) : (
         ownsStations.map((station) => (
-          <div key={station} className="individual-saved-stations">
+          <div key={station._id} className="individual-saved-stations">
             <Link to={`/search/${station._id}`}>
               <h4>{station.stationName}</h4>
             </Link>

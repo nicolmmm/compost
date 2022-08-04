@@ -4,30 +4,35 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    //finds all users
     users: async () => {
       return User.find();
     },
 
+    //find a single user and their stations
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId })
         .populate("ownsStations")
         .populate("savedStations");
     },
-
+    // finds all stations
     stations: async () => {
       return Station.find();
     },
 
+    //finds a single station
     singleStation: async (parent, { stationId }) => {
       return Station.findOne({ _id: stationId });
     },
 
+    //find a station by it's postcode
     stationByPostCode: async (parent, { queryPostCode }) => {
       return Station.find({ postCode: queryPostCode });
     },
   },
 
   Mutation: {
+    //add a new user
     addUser: async (parent, { userName, email, password, phoneNumber }) => {
       const user = await User.create({
         userName,
@@ -58,6 +63,7 @@ const resolvers = {
       return { token, user };
     },
 
+    //saves a station to a user's "savedStations" array
     saveStation: async (parent, { stationId }, context) => {
       console.log(stationId);
       if (context.user) {
@@ -71,6 +77,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    //add a new station if a user is logged in.
     addStation: async (
       parent,
       {
@@ -85,7 +92,6 @@ const resolvers = {
       },
       context
     ) => {
-      console.log("context is ", context.user);
       if (context.user) {
         const station = await Station.create({
           stationName,
@@ -108,6 +114,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
     incrementThumbsUp: async (parents, { userId }) => {
       return User.findOneAndUpdate(
         { _id: userId },
@@ -124,10 +131,12 @@ const resolvers = {
       );
     },
 
+    //removes a user, not used currently
     removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },
 
+    //removes a saved station from a user's savedStations array
     removeSavedStation: async (parent, { stationId }, context) => {
       console.log(context.user);
       if (context.user) {
@@ -136,15 +145,22 @@ const resolvers = {
           { $pull: { savedStations: stationId } },
           { new: true }
         );
-        console.log(context.user);
         return user;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    removeStation: async (parent, { userId }) => {
-      return Station.findOneAndDelete({ _id: stationId });
-      //update saved stations too?
+    //deletes  a station
+    removeStation: async (parent, { stationId }, context) => {
+      if (context.user) {
+        return Station.findOneAndDelete({ _id: stationId });
+      }
+      const user = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { ownsStations: stationId } },
+        { new: true }
+      );
+      return user;
     },
   },
 };

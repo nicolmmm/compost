@@ -27,10 +27,15 @@ export const REMOVE_SAVED_STATION = gql`
     removeSavedStation(stationId: $stationId) {
       userName
       _id
-      savedStations {
-        _id
-        stationName
-      }
+    }
+  }
+`;
+
+export const REMOVE_STATION = gql`
+  mutation RemoveStation($stationId: ID!) {
+    removeStation(stationId: $stationId) {
+      stationName
+      _id
     }
   }
 `;

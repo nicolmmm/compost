@@ -27,10 +27,9 @@ export const PostPage = () => {
     });
   };
 
-  //returns integer value instead of string
   const handleChangeInt = (event) => {
     const { name, value } = event.target;
-
+    //returns integer value instead of string
     setFormState({
       ...formState,
       [name]: parseInt(value),
@@ -73,16 +72,15 @@ export const PostPage = () => {
       formState.city === "" ||
       formState.postCode === ""
     ) {
-      console.log("it's caught");
       alert("All fields need to be filled");
       return;
     }
 
     try {
-      console.log("it not caught");
       const newStation = await addStation({
         variables: { ...formState },
       });
+
       return (
         newStation && navigate(`/search/${newStation.data.addStation._id}`)
       );

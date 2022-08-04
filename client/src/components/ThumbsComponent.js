@@ -6,6 +6,14 @@ export function ThumbsComponent({ thumbsUp, thumbsDown, userId }) {
   const [thumbsUpstate, setThumbsUpstate] = useState(thumbsUp);
   const [thumbsDownstate, setThumbsDownstate] = useState(thumbsDown);
 
+  useEffect(() => {
+    setThumbsUpstate(thumbsUp);
+  }, [thumbsUp]);
+
+  useEffect(() => {
+    setThumbsDownstate(thumbsDown);
+  }, [thumbsDown]);
+
   const [thumbUp] = useMutation(INCREMENT_THUMBS_UP);
   const [thumbDown] = useMutation(INCREMENT_THUMBS_DOWN);
 
@@ -61,10 +69,4 @@ export function ThumbsComponent({ thumbsUp, thumbsDown, userId }) {
       </div>
     </div>
   );
-}
-
-{
-  /* `${thumbsUpstate * Math.abs(thumbsDownState) * -1} of ${
-              thumbsUp + thumbsDown
-            } votes.`} */
 }

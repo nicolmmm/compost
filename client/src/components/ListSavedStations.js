@@ -6,32 +6,26 @@ import { RemoveSavedStationButton } from "./RemoveSavedStationButton";
 import Auth from "../../src/utils/auth";
 
 export function ListSavedStations({ userId }) {
-  const { loading, data } = useQuery(USER_BY_ID_STATION_LISTS, {
+  const { loading, data, refetch } = useQuery(USER_BY_ID_STATION_LISTS, {
     variables: { userId: userId },
   });
 
-  const savedStations = data?.user.savedStations || {};
+  const savedStations = data?.user.savedStations || [];
 
-  const [savedStationsArr, setSavedStationsArr] = useState({});
+  /*   const [savedStationsArr, setSavedStationsArr] = useState(savedStations);
 
-  const setState = () =>
-    savedStations ? setSavedStationsArr(savedStations) : null;
+  useEffect(() => {
+    setSavedStationsArr(savedStations);
+  }, [savedStations.length]); */
 
-  setState();
+  const returnTrueIfUserOwnsStation = (id) => {
+    if (Auth.getProfile().data._id === id) return true;
+    else return false;
+  };
 
-  console.log(savedStationsArr);
-
-  //setSavedStationsArr({ savedStations });
-  /* 
-  console.log(
-    "savedStationsArr is",
-    savedStationsArr,
-    "savedStations is",
-    savedStations
-  ); */
-
-  const isUsersProfile = (usedId) => {
-    if (userId === Auth.getProfile().data._id) return true;
+  const onRemove = () => {
+    console.log(savedStations);
+    refetch();
   };
 
   return (
@@ -46,14 +40,15 @@ export function ListSavedStations({ userId }) {
               <h4>{station.stationName}</h4>
             </Link>
             <p>{station.stationDescription}</p>
-            {isUsersProfile(userId) ? (
-              <RemoveSavedStationButton stationId={station._id} />
+            {returnTrueIfUserOwnsStation(userId) ? (
+              <RemoveSavedStationButton
+                stationId={station._id}
+                onRemove={onRemove}
+              />
             ) : null}
           </div>
         ))
       )}
-
-      {loading ? <p>loading...</p> : null}
     </div>
   );
 }
