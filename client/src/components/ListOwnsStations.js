@@ -18,7 +18,7 @@ export function ListOwnsStations({ userId }) {
     <div className="saved-station-list">
       <h2>Owns Stations</h2>
       {loading ? (
-        <p> No Stations saved yet</p>
+        <p> Loading...</p>
       ) : (
         ownsStations.map((station) => (
           <div key={station._id} className="individual-saved-stations">

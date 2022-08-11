@@ -153,10 +153,17 @@ display: flex
   display: flex;
 }
 
+.search-page-controls{
+display: flex;
+}
 
 
 .user-profile-container{
 
+}
+
+.form-input {
+  margin: 0.5rem 0rem
 }
 
 

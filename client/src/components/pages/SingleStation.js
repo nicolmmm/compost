@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { UserSidebar } from "../UserSidebar";
 import { SaveStationButton } from "../SaveStationButton";
 import { RemoveStationButton } from "../RemoveStation";
+/* import { GMapsSmall } from "../GMapsSmall"; */
 import Auth from "../../utils/auth";
 
 export function SingleStation() {
@@ -40,6 +41,7 @@ export function SingleStation() {
           <b>Distributing Soil</b>
           {station.distributingSoil ? <p>yes</p> : <p>no</p>}
         </div>
+        {/* <GMapsSmall stationId={stationId} /> */}
         <SaveStationButton stationId={stationId} />
         {returnTrueIfUserOwnsStation(station.owner) ? (
           <RemoveStationButton stationId={station._id} />

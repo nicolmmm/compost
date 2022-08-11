@@ -31,18 +31,28 @@ export function SearchPage() {
 
   return (
     <div className="search-page-body">
-      <div className="Search-page-title-">
+      <div className="Search-page-title">
         <h2>Search for Stations</h2>
-        <form onSubmit={handleFormSubmit}>
-          <input
-            className="form-input"
-            placeholder="Search for a post code"
-            name="QueryPostCode"
-            type="postCode"
-            defaultValue={""}
-            onChange={handleChange}
-          />
-        </form>
+        <div className="search-page-controls">
+          <form onSubmit={handleFormSubmit}>
+            <input
+              className="form-input"
+              placeholder="Search for a post code"
+              name="QueryPostCode"
+              type="postCode"
+              defaultValue={""}
+              onChange={handleChange}
+            />
+          </form>
+          <button
+            className="homepage-btn btn  btn-outline-info"
+            style={{ cursor: "pointer" }}
+            type="button"
+            onClick={handleFormSubmit}
+          >
+            Search
+          </button>
+        </div>
       </div>
 
       <div className="stationSearchData">
